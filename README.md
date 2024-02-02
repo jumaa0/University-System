@@ -92,7 +92,7 @@ all students based on the average grades they have achieved. The
 purpose of this procedure is to recalculate and update the GPA of all 
 students in the database based on the average grades they have 
 obtained in their courses.
-![Image](photos/pl1.png)
+![Image](photos/PL.png)
 #### `getBestGpa` PL/SQL Function
 
 The getBestGpa PL/SQL function is designed to retrieve the first name of 
@@ -142,29 +142,26 @@ In this project, I provided the Java Source Code in the `Java` folder. This fold
 
 1. **Report & Homepage:**
    - This section provides comprehensive information and analysis concerning students, courses, departments, and student GPAs within the application.
-![Image](photos/report.png)
 
 2. **Search Students:**
    - This scene offers detailed information on specific students, allowing users to view their complete profiles. Additionally, users can seamlessly enroll students in courses and grade those courses, all within the same interactive interface.
-![Image](photos/search_student.png)
 
 3. **All Students:**
    - This scene serves as a central hub for accessing information on all students. Users can not only view existing data but also conveniently insert new students directly within the same interface. Additionally, it features the "Update Students GPA" function, seamlessly connecting with a database procedure for maintaining accurate student records.
 
-![Image](photos/all_students.png)
 
 
 4. **Departments:**
    - This scene provides a comprehensive display of departmental data, offering insights into various aspects related to each department within the application.
-![Image](photos/departments.png)
 
 5. **Courses:**
    - Within this scene, you can explore detailed information about courses, including relevant course data and the average grade associated with each course. This feature provides a quick overview of the performance metrics for individual courses within the application.
-![Image](photos/courses.png)
 
 ## Data Access Layer
 
 Having explored the Scenes in detail, let's now delve into the implementation by providing code snippets from the Data access layer. This will facilitate a deeper understanding of the integration between the scene and the underlying data functionality.
+![Image](photos/report.png)  ![Image](photos/search_student.png)  ![Image](photos/all_students.png)
+![Image](photos/departments.png)  ![Image](photos/courses.png)
 ![Image](photos/dal1.png)
 ![Image](photos/dal2.png)
 ![Image](photos/dal3.png)
