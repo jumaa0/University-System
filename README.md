@@ -92,7 +92,7 @@ all students based on the average grades they have achieved. The
 purpose of this procedure is to recalculate and update the GPA of all 
 students in the database based on the average grades they have 
 obtained in their courses.
-![Image](photos/PL.png)
+![Image](photos/PL1.png)
 #### `getBestGpa` PL/SQL Function
 
 The getBestGpa PL/SQL function is designed to retrieve the first name of 
