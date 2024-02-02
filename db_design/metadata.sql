@@ -1,0 +1,259 @@
+-- create_tables.sql
+
+-- Create STUDENTS table
+ALTER TABLE ITI.STUDENTS
+ DROP PRIMARY KEY CASCADE;
+
+DROP TABLE ITI.STUDENTS CASCADE CONSTRAINTS;
+
+CREATE TABLE ITI.STUDENTS
+(
+  ST_ID       NUMBER(4),
+  ST_FNAME    VARCHAR2(20 BYTE),
+  ST_LNAME    VARCHAR2(20 BYTE),
+  BOD         DATE,
+  ADDRESS     VARCHAR2(100 BYTE),
+  YEAR_LEVEL  NUMBER(2),
+  GPA         NUMBER(3,1)
+)
+TABLESPACE SYSTEM
+PCTUSED    40
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          64K
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            FREELISTS        1
+            FREELIST GROUPS  1
+            BUFFER_POOL      DEFAULT
+           )
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+
+ALTER TABLE ITI.STUDENTS ADD (
+  CONSTRAINT CHECK_GPA
+ CHECK (gpa >= 1 AND gpa <= 4),
+  CONSTRAINT CHECK_YEAR_LEVEL
+ CHECK (year_level >= 1 AND year_level <= 4),
+  PRIMARY KEY
+ (ST_ID)
+    USING INDEX 
+    TABLESPACE SYSTEM
+    PCTFREE    10
+    INITRANS   2
+    MAXTRANS   255
+    STORAGE    (
+                INITIAL          64K
+                NEXT             1M
+                MINEXTENTS       1
+                MAXEXTENTS       UNLIMITED
+                PCTINCREASE      0
+                FREELISTS        1
+                FREELIST GROUPS  1
+               ));
+
+
+
+-- Create DEPARTMENTS table
+ALTER TABLE ITI.DEPARTMENTS
+ DROP PRIMARY KEY CASCADE;
+
+DROP TABLE ITI.DEPARTMENTS CASCADE CONSTRAINTS;
+
+CREATE TABLE ITI.DEPARTMENTS
+(
+  DEPT_ID    NUMBER(4),
+  DEPT_NAME  VARCHAR2(20 BYTE)
+)
+TABLESPACE SYSTEM
+PCTUSED    40
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          64K
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            FREELISTS        1
+            FREELIST GROUPS  1
+            BUFFER_POOL      DEFAULT
+           )
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+
+ALTER TABLE ITI.DEPARTMENTS ADD (
+  PRIMARY KEY
+ (DEPT_ID)
+    USING INDEX 
+    TABLESPACE SYSTEM
+    PCTFREE    10
+    INITRANS   2
+    MAXTRANS   255
+    STORAGE    (
+                INITIAL          64K
+                NEXT             1M
+                MINEXTENTS       1
+                MAXEXTENTS       UNLIMITED
+                PCTINCREASE      0
+                FREELISTS        1
+                FREELIST GROUPS  1
+               ));
+
+
+-- Create COURSES table
+ALTER TABLE ITI.COURSES
+ DROP PRIMARY KEY CASCADE;
+
+DROP TABLE ITI.COURSES CASCADE CONSTRAINTS;
+
+CREATE TABLE ITI.COURSES
+(
+  CRS_ID    NUMBER(4),
+  CRS_NAME  VARCHAR2(100 BYTE),
+  CREDITS   NUMBER(4,2),
+  DEPT_ID   NUMBER(4)
+)
+TABLESPACE SYSTEM
+PCTUSED    40
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          64K
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            FREELISTS        1
+            FREELIST GROUPS  1
+            BUFFER_POOL      DEFAULT
+           )
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+
+ALTER TABLE ITI.COURSES ADD (
+  PRIMARY KEY
+ (CRS_ID)
+    USING INDEX 
+    TABLESPACE SYSTEM
+    PCTFREE    10
+    INITRANS   2
+    MAXTRANS   255
+    STORAGE    (
+                INITIAL          64K
+                NEXT             1M
+                MINEXTENTS       1
+                MAXEXTENTS       UNLIMITED
+                PCTINCREASE      0
+                FREELISTS        1
+                FREELIST GROUPS  1
+               ));
+
+ALTER TABLE ITI.COURSES ADD (
+  CONSTRAINT FK_DEPT_ID 
+ FOREIGN KEY (DEPT_ID) 
+ REFERENCES ITI.DEPARTMENTS (DEPT_ID));
+
+
+-- Create GRADES table
+ALTER TABLE ITI.GRADES
+ DROP PRIMARY KEY CASCADE;
+
+DROP TABLE ITI.GRADES CASCADE CONSTRAINTS;
+
+CREATE TABLE ITI.GRADES
+(
+  G_ID      NUMBER(4),
+  ST_ID     NUMBER(4),
+  CRS_ID    NUMBER(4),
+  GRADE     NUMBER(2),
+  FEEDBACK  NUMBER(1)                           DEFAULT 1,
+  CRS_YEAR  NUMBER(1)
+)
+TABLESPACE SYSTEM
+PCTUSED    40
+PCTFREE    10
+INITRANS   1
+MAXTRANS   255
+STORAGE    (
+            INITIAL          64K
+            NEXT             1M
+            MINEXTENTS       1
+            MAXEXTENTS       UNLIMITED
+            PCTINCREASE      0
+            FREELISTS        1
+            FREELIST GROUPS  1
+            BUFFER_POOL      DEFAULT
+           )
+LOGGING 
+NOCOMPRESS 
+NOCACHE
+NOPARALLEL
+MONITORING;
+
+
+CREATE OR REPLACE TRIGGER ITI.GRADES_TRG
+BEFORE INSERT
+ON ITI.GRADES REFERENCING NEW AS New OLD AS Old
+FOR EACH ROW
+BEGIN
+-- For Toad:  Highlight column G_ID
+  :new.G_ID := GRADES2_SEQ.nextval;
+END GRADES_TRG;
+/
+
+
+ALTER TABLE ITI.GRADES ADD (
+  CONSTRAINT CRS_YEAR
+ CHECK (crs_year >=1 AND crs_year <=4),
+  PRIMARY KEY
+ (G_ID)
+    USING INDEX 
+    TABLESPACE SYSTEM
+    PCTFREE    10
+    INITRANS   2
+    MAXTRANS   255
+    STORAGE    (
+                INITIAL          64K
+                NEXT             1M
+                MINEXTENTS       1
+                MAXEXTENTS       UNLIMITED
+                PCTINCREASE      0
+                FREELISTS        1
+                FREELIST GROUPS  1
+               ));
+
+ALTER TABLE ITI.GRADES ADD (
+  CONSTRAINT FK_CRS_ID 
+ FOREIGN KEY (CRS_ID) 
+ REFERENCES ITI.COURSES (CRS_ID),
+  CONSTRAINT FK_ST_ID 
+ FOREIGN KEY (ST_ID) 
+ REFERENCES ITI.STUDENTS (ST_ID));
+
+
+-- Creating a sequence for Grades
+CREATE SEQUENCE grades_seq
+  START WITH 1
+  INCREMENT BY 1
+  NOMAXVALUE
+  NOCYCLE
+  CACHE 10; 

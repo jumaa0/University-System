@@ -1,0 +1,25 @@
+Students Table:
+
+Contains information about students, including their unique ID, name, date of birth, and the department they belong to.
+
+
+Courses Table:
+
+Stores information about courses, such as the course ID, name, credits, and the department offering the course.
+
+
+Departments Table:
+
+Represents different academic departments, with a unique department ID and the department name.
+
+
+Grades Table:
+
+Records the grades of students in various courses, linking student and course information through foreign keys.
+
+
+Additional Notes:
+
+Relationships: The DepartmentID in the Students and Courses tables establishes a relationship with the Departments table.
+Data Types: Ensure that appropriate data types (e.g., VARCHAR, INT, DATE) are used for each column.
+Indexing: Consider adding indexes on columns frequently used for querying, such as primary and foreign key columns.
