@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="univeristy_app.AllStudentsController">
+   <top>
+      <VBox prefHeight="95.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox prefHeight="42.0" prefWidth="600.0">
+               <children>
+                  <Button fx:id="btn_back" mnemonicParsing="false" prefHeight="38.0" prefWidth="67.0" text="&lt;" />
+                  <Label prefHeight="31.0" prefWidth="36.0" text="ID:" />
+                  <TextField fx:id="txt_id" prefHeight="31.0" prefWidth="51.0" />
+                  <Label prefHeight="47.0" prefWidth="100.0" text="    First Name:" />
+                  <TextField fx:id="txt_fname" prefHeight="31.0" prefWidth="105.0" />
+                  <Label prefHeight="31.0" prefWidth="105.0" text="   Last Name:" />
+                  <TextField fx:id="txt_lname" prefHeight="31.0" prefWidth="137.0" />
+               </children>
+            </HBox>
+            <HBox prefHeight="72.0" prefWidth="600.0" />
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label prefHeight="21.0" prefWidth="86.0" text="Address:" />
+                  <TextField fx:id="txt_address" prefHeight="31.0" prefWidth="416.0" />
+                  <Button fx:id="btn_addStudent" mnemonicParsing="false" prefHeight="31.0" prefWidth="121.0" text="ADD Student" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </top>
+   <center>
+      <TableView fx:id="tab_students" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn fx:id="tab_stID" prefWidth="90.0" text="Student ID" />
+          <TableColumn fx:id="tab_stFname" prefWidth="135.0" text="Frist Name" />
+            <TableColumn fx:id="tab_stLname" minWidth="2.0" prefWidth="130.0" text="Last Name" />
+            <TableColumn fx:id="tab_stAddress" minWidth="0.0" prefWidth="64.0" text="GPA" />
+            <TableColumn fx:id="tab_stGpa" minWidth="0.0" prefWidth="190.0" text="Address" />
+        </columns>
+      </TableView>
+   </center>
+   <bottom>
+      <Button fx:id="btn_updateGPA" mnemonicParsing="false" prefHeight="31.0" prefWidth="233.0" text="Update Students GPA" BorderPane.alignment="CENTER" />
+   </bottom>
+</BorderPane>
