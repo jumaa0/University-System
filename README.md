@@ -26,7 +26,7 @@ This comprehensive documentation outlines the design, implementation, and functi
 ## Database Design
 
 This document has provided a comprehensive overview of the relational database schema for managing student, course, department, and grade information. The design adheres to normalization principles to ensure data integrity. The outlined schema will serve as a foundation for subsequent steps, including SQL script creation, data population, and the development of PL/SQL procedures and Java applications.
-
+(photos/ERD.png)
 ### Tables
 
 - **Students Table**
