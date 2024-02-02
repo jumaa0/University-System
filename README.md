@@ -61,13 +61,7 @@ This document has provided a comprehensive overview of the relational database s
 
 The code for creating the database schema is in a file named `metadata.sql`. This SQL script is designed to create tables for a university-related database, specifically focusing on students, departments, courses, and grades.
 
-### Create Tables
-
-...
-
-### Insert Data
-
-...
+![Image](photos/SQL.png)
 
 ## PL/SQL
 
@@ -77,15 +71,37 @@ Creating some functions and procedures to help organize code by grouping related
 
 #### `calculate_gpa` PL/SQL Function
 
-...
+The `calculate_gpa` PL/SQL function is designed to convert numerical grades into the corresponding GPA (Grade Point Average) according to the following standard grading scale:
 
+- **97 and above:** 4.0
+- **93 to 96:** 4.0
+- **90 to 92:** 3.7
+- **87 to 89:** 3.3
+- **83 to 86:** 3.0
+- **80 to 82:** 2.7
+- **77 to 79:** 2.3
+- **73 to 76:** 2.0
+- **70 to 72:** 1.7
+- **67 to 69:** 1.3
+- **65 to 66:** 1.0
+- **Below 65:** 0.0
 #### `update_all_gpa` PL/SQL Procedure
 
-...
-
+The update_all_gpa PL/SQL procedure is designed to update the GPA of 
+all students based on the average grades they have achieved. The 
+purpose of this procedure is to recalculate and update the GPA of all 
+students in the database based on the average grades they have 
+obtained in their courses.
+![Image](photos/pl1.png)
 #### `getBestGpa` PL/SQL Function
 
-...
+The getBestGpa PL/SQL function is designed to retrieve the first name of 
+the student with the highest GPA in a specific year level. The purpose of 
+this function is to find and return the first name of the student with the 
+highest GPA in a given academic year level.
+
+![Image](photos/pl2.png)
+
 
 ### Creating Seq-trigger Pairs
 
@@ -111,6 +127,7 @@ Creating some functions and procedures to help organize code by grouping related
 
 - **DATABASE BACKUP - `backup.sh`**
   - Perform a full backup of the database. The `script.bat` file is used by Windows task scheduler to run the bash script.
+![Image](photos/bash.png)
 
 ## Java Application
 
@@ -125,19 +142,29 @@ In this project, I provided the Java Source Code in the `Java` folder. This fold
 
 1. **Report & Homepage:**
    - This section provides comprehensive information and analysis concerning students, courses, departments, and student GPAs within the application.
+![Image](photos/report.png)
 
 2. **Search Students:**
    - This scene offers detailed information on specific students, allowing users to view their complete profiles. Additionally, users can seamlessly enroll students in courses and grade those courses, all within the same interactive interface.
+![Image](photos/search_student.png)
 
 3. **All Students:**
    - This scene serves as a central hub for accessing information on all students. Users can not only view existing data but also conveniently insert new students directly within the same interface. Additionally, it features the "Update Students GPA" function, seamlessly connecting with a database procedure for maintaining accurate student records.
 
+![Image](photos/all_students.png)
+
+
 4. **Departments:**
    - This scene provides a comprehensive display of departmental data, offering insights into various aspects related to each department within the application.
+![Image](photos/departments.png)
 
 5. **Courses:**
    - Within this scene, you can explore detailed information about courses, including relevant course data and the average grade associated with each course. This feature provides a quick overview of the performance metrics for individual courses within the application.
+![Image](photos/courses.png)
 
 ## Data Access Layer
 
 Having explored the Scenes in detail, let's now delve into the implementation by providing code snippets from the Data access layer. This will facilitate a deeper understanding of the integration between the scene and the underlying data functionality.
+![Image](photos/dal1.png)
+![Image](photos/dal2.png)
+![Image](photos/dal3.png)
