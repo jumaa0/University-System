@@ -1,6 +1,6 @@
 # University Data Management System
 
-## <span style="color: green;">Project Completion 100%</span>
+## <span style="color: #ff7f50;">Project Completion Unleashed! 🔥</span>
 
 Hey there! Welcome to my University Data Management System project repo. This project is my playground to showcase my data engineering skills – a mix of database magic, scripting wizardry, and Java charm.
 
