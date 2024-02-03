@@ -1,167 +1,38 @@
-# University System Documentation
+# University Data Management System
 
-*Prepared by Ahmed Jumaa | Feb. 2024*
+## <span style="color: green;">Project Completion 100%</span>
 
-## Table of Contents
-1. [Introduction](#introduction)
-2. [Database Design](#database-design)
-   1. [Tables](#tables)
-   2. [Normalization](#normalization)
-3. [SQL Implementation](#sql-implementation)
-   1. [Create Tables](#create-tables)
-   2. [Insert Data](#insert-data)
-4. [PL/SQL](#plsql)
-   1. [Creating Functions & Procedures](#creating-functions--procedures)
-   2. [Creating Seq-trigger Pairs](#creating-seq-trigger-pairs)
-5. [Automation Script (BASH)](#automation-script-bash)
-6. [Java Application](#java-application)
-   1. [Explore Scenes](#explore-scenes)
-   2. [Explore Code](#explore-code)
-7. [Data Access Layer](#data-access-layer)
+Hey there! Welcome to my College Data Management System project repo. This project is my playground to showcase my data engineering skills – a mix of database magic, scripting wizardry, and Java charm.
 
-## Introduction
+## What's Inside?
 
-This comprehensive documentation outlines the design, implementation, and functionality of a University System, covering key aspects such as database design, SQL implementation, PL/SQL procedures, an automation script, and a Java application. Each section is meticulously detailed to provide a clear understanding of the system's architecture, facilitating ease of development, maintenance, and troubleshooting.
+- **Database Design:** Crafted a slick Entity Relationship Diagram (ERD) to map out the database schema.
+  
+- **SQL Implementation:** Got my hands dirty with Oracle SQL to shape the database tables.
 
-## Database Design
+- **Data Population:** Sprinkled some Python magic to bring the database to life with realistic data.
 
-This document has provided a comprehensive overview of the relational database schema for managing student, course, department, and grade information. The design adheres to normalization principles to ensure data integrity. The outlined schema will serve as a foundation for subsequent steps, including SQL script creation, data population, and the development of PL/SQL procedures and Java applications.
-![Image](photos/ERD.png)
-### Tables
+- **PL/SQL:** Added some spice with functions, procedures, and triggers for a snazzy database.
 
-- **Students Table**
-  - `st_id`: Unique identifier for each student.
-  - `st_fname`: First name of the student.
-  - `st_lname`: Last name of the student.
-  - `dob`: Date of birth of the student.
-  - `address`: Address of the student.
-  - `year_level`: Current academic year of the student.
-  - `dept_id`: Foreign key referencing the Departments table.
+- **Bash Script:** Cooked up a nifty Bash script for keeping an eye on disk usage and doing monthly backups.
 
-- **Departments Table**
-  - `dept_id`: Unique identifier for each department.
-  - `dept_name`: Name of the department.
-  - `dept_loc`: Location of the department.
-  - `dept_manager`: Manager of the department.
+- **Java Application:** Built a swanky Java desktop app – think student enrollment, grading, and eye-catching data visuals.
 
-- **Courses Table**
-  - `crs_id`: Unique identifier for each course.
-  - `crs_name`: Name of the course.
-  - `credits`: Credits associated with the course.
+## Dive Deeper
 
-- **Grades Table**
-  - `g_id`: Unique identifier for each grade entry.
-  - `st_id`: Foreign key referencing the Students table.
-  - `crs_id`: Foreign key referencing the Courses table.
-  - `grade`: Grade obtained by the student.
-  - `feedback`: Feedback related to the student's performance.
-  - `crs_year`: Academic year in which the course was taken.
+- [Project Documentation PDF](Documentation.pdf)
+- [Java Application Code](univeristy_app)
+- [Bash Script Code](db_backup/backup.sh)
+- [Database Schema](db_design)
 
-## SQL Implementation
+## Ready to Roll?
 
-The code for creating the database schema is in a file named `metadata.sql`. This SQL script is designed to create tables for a university-related database, specifically focusing on students, departments, courses, and grades.
+1. Clone the repo: `git clone https://github.com/your-username/your-repo.git`
+2. Set up the database by running those SQL scripts.
+3. Sprinkle some Python magic to populate the database.
+4. Fire up the Bash script for disk wisdom and backups.
+5. Launch the Java app and let the data fun begin.
 
-![Image](photos/SQL.png)
+## Share Your Thoughts
 
-## PL/SQL
-
-Creating some functions and procedures to help organize code by grouping related tasks together. This enhances code readability and makes it easier to maintain and troubleshoot.
-
-### Creating Functions & Procedures
-
-#### `calculate_gpa` PL/SQL Function
-
-The `calculate_gpa` PL/SQL function is designed to convert numerical grades into the corresponding GPA (Grade Point Average) according to the following standard grading scale:
-
-- **97 and above:** 4.0
-- **93 to 96:** 4.0
-- **90 to 92:** 3.7
-- **87 to 89:** 3.3
-- **83 to 86:** 3.0
-- **80 to 82:** 2.7
-- **77 to 79:** 2.3
-- **73 to 76:** 2.0
-- **70 to 72:** 1.7
-- **67 to 69:** 1.3
-- **65 to 66:** 1.0
-- **Below 65:** 0.0
-#### `update_all_gpa` PL/SQL Procedure
-
-The update_all_gpa PL/SQL procedure is designed to update the GPA of 
-all students based on the average grades they have achieved. The 
-purpose of this procedure is to recalculate and update the GPA of all 
-students in the database based on the average grades they have 
-obtained in their courses.
-![Image](photos/PL1.png)
-#### `getBestGpa` PL/SQL Function
-
-The getBestGpa PL/SQL function is designed to retrieve the first name of 
-the student with the highest GPA in a specific year level. The purpose of 
-this function is to find and return the first name of the student with the 
-highest GPA in a given academic year level.
-
-![Image](photos/pl2.png)
-
-
-### Creating Seq-trigger Pairs
-
-- **Sequence: ITI.GRADES_SEQ**
-  - The sequence `ITI.GRADES_SEQ` is designed to generate unique values for the primary key column `G_ID` in the `ITI.GRADES` table.
-    - Start Value: The sequence starts with the value 131.
-    - Maximum Value: The maximum value is set to a very high number to accommodate a large number of unique values.
-    - Minimum Value: The minimum value is set to 1.
-    - No Cycle: The sequence does not cycle back to its start value.
-    - Cache: The sequence preallocates and caches 10 values for better performance.
-    - No Order: The sequence may not generate values in order of request.
-
-- **Trigger: ITI.GRADES_TRG**
-  - The trigger `ITI.GRADES_TRG` is associated with the BEFORE INSERT event on the `ITI.GRADES` table. Its purpose is to automatically populate the `G_ID` column with the next value from the `ITI.GRADES_SEQ` sequence.
-    - Event: The trigger is fired before an INSERT operation on the `ITI.GRADES` table.
-    - Referencing Clause: The `REFERENCING` clause is used to reference the new and old values of the rows being affected.
-    - Trigger Body: In the trigger body, the `:new.G_ID` is assigned the next value from the `ITI.GRADES_SEQ` sequence.
-
-## Automation Script (BASH)
-
-- **DISK MONITORING - `backup.sh`**
-  - Bash Script to monitor the Hard Disk usage and send alerts in case a specific threshold is exceeded. The `log.log` file contains the disk monitoring and the backup logs.
-
-- **DATABASE BACKUP - `backup.sh`**
-  - Perform a full backup of the database. The `script.bat` file is used by Windows task scheduler to run the bash script.
-![Image](photos/bash.png)
-
-## Java Application
-
-In this project, I provided the Java Source Code in the `Java` folder. This folder contains the source code for the Java application, enabling you to use any code editor for building and running the application.
-
-- **Client:** Contains classes shared across applications (DTOs).
-- **Database:** Houses the Singleton class managing the Database Connection.
-- **GUI:** Encompasses code for all front-end (GUI) classes, including the source code for the application's backend.
-- **Images:** Stores assets (pictures) used by the application.
-
-### Explore Scenes
-
-1. **Report & Homepage:**
-   - This section provides comprehensive information and analysis concerning students, courses, departments, and student GPAs within the application.
-
-2. **Search Students:**
-   - This scene offers detailed information on specific students, allowing users to view their complete profiles. Additionally, users can seamlessly enroll students in courses and grade those courses, all within the same interactive interface.
-
-3. **All Students:**
-   - This scene serves as a central hub for accessing information on all students. Users can not only view existing data but also conveniently insert new students directly within the same interface. Additionally, it features the "Update Students GPA" function, seamlessly connecting with a database procedure for maintaining accurate student records.
-
-
-
-4. **Departments:**
-   - This scene provides a comprehensive display of departmental data, offering insights into various aspects related to each department within the application.
-
-5. **Courses:**
-   - Within this scene, you can explore detailed information about courses, including relevant course data and the average grade associated with each course. This feature provides a quick overview of the performance metrics for individual courses within the application.
-
-## Data Access Layer
-
-Having explored the Scenes in detail, let's now delve into the implementation by providing code snippets from the Data access layer. This will facilitate a deeper understanding of the integration between the scene and the underlying data functionality.
-![Image](photos/report.png)  ![Image](photos/search_student.png)  ![Image](photos/all_students.png)
-![Image](photos/departments.png)  ![Image](photos/courses.png)
-![Image](photos/dal1.png)
-![Image](photos/dal2.png)
-![Image](photos/dal3.png)
+Got feedback or itching to contribute? Throw me a pull request. Let's make this project even cooler together! 🚀
