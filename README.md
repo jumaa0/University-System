@@ -2,15 +2,13 @@
 
 ## <span style="color: green;">Project Completion 100%</span>
 
-Hey there! Welcome to my College Data Management System project repo. This project is my playground to showcase my data engineering skills – a mix of database magic, scripting wizardry, and Java charm.
+Hey there! Welcome to my University Data Management System project repo. This project is my playground to showcase my data engineering skills – a mix of database magic, scripting wizardry, and Java charm.
 
 ## What's Inside?
 
 - **Database Design:** Crafted a slick Entity Relationship Diagram (ERD) to map out the database schema.
   
 - **SQL Implementation:** Got my hands dirty with Oracle SQL to shape the database tables.
-
-- **Data Population:** Sprinkled some Python magic to bring the database to life with realistic data.
 
 - **PL/SQL:** Added some spice with functions, procedures, and triggers for a snazzy database.
 
